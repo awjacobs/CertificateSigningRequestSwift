@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		6274CB9020DA998B0031FB7C /* CommonCryptoModuleMap */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 6274CB9320DA998B0031FB7C /* Build configuration list for PBXAggregateTarget "CommonCryptoModuleMap" */;
+			buildPhases = (
+				6274CB9420DA99A80031FB7C /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = CommonCryptoModuleMap;
+			productName = CommonCryptoModuleMap;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		910920A31E788CB1008E5535 /* CertificateSigningRequestSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910920A21E788CB1008E5535 /* CertificateSigningRequestSwiftTests.swift */; };
 		917B68901DD0F4FD00AE5629 /* CertificateSigningRequestSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917B68861DD0F4FD00AE5629 /* CertificateSigningRequestSwift.framework */; };
@@ -14,6 +28,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6274CB9520DA99D10031FB7C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 917B687D1DD0F4FD00AE5629 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6274CB9020DA998B0031FB7C;
+			remoteInfo = CommonCryptoModuleMap;
+		};
 		917B68911DD0F4FD00AE5629 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 917B687D1DD0F4FD00AE5629 /* Project object */;
@@ -136,6 +157,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6274CB9620DA99D10031FB7C /* PBXTargetDependency */,
 			);
 			name = CertificateSigningRequestSwift;
 			productName = iOSCSRSwift;
@@ -170,6 +192,10 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "One Degree Technologies";
 				TargetAttributes = {
+					6274CB9020DA998B0031FB7C = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+					};
 					917B68851DD0F4FD00AE5629 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = K26KDKYY38;
@@ -198,6 +224,7 @@
 			targets = (
 				917B68851DD0F4FD00AE5629 /* CertificateSigningRequestSwift */,
 				917B688E1DD0F4FD00AE5629 /* CertificateSigningRequestSwiftTests */,
+				6274CB9020DA998B0031FB7C /* CommonCryptoModuleMap */,
 			);
 		};
 /* End PBXProject section */
@@ -218,6 +245,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6274CB9420DA99A80031FB7C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "# This if-statement means we'll only run the main script if the CommonCryptoModuleMap directory doesn't exist\n# Because otherwise the rest of the script causes a full recompile for anything where CommonCrypto is a dependency\n# Do a \"Clean Build Folder\" to remove this directory and trigger the rest of the script to run\nif [ -d \"${BUILT_PRODUCTS_DIR}/CommonCryptoModuleMap\" ]; then\necho \"${BUILT_PRODUCTS_DIR}/CommonCryptoModuleMap directory already exists, so skipping the rest of the script.\"\nexit 0\nfi\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/CommonCryptoModuleMap\"\ncat <<EOF > \"${BUILT_PRODUCTS_DIR}/CommonCryptoModuleMap/module.modulemap\"\nmodule CommonCrypto [system] {\n    header \"${SDKROOT}/usr/include/CommonCrypto/CommonCrypto.h\"\n    export *\n}\nEOF";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		917B68811DD0F4FD00AE5629 /* Sources */ = {
@@ -240,6 +283,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6274CB9620DA99D10031FB7C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6274CB9020DA998B0031FB7C /* CommonCryptoModuleMap */;
+			targetProxy = 6274CB9520DA99D10031FB7C /* PBXContainerItemProxy */;
+		};
 		917B68921DD0F4FD00AE5629 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 917B68851DD0F4FD00AE5629 /* CertificateSigningRequestSwift */;
@@ -248,6 +296,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		6274CB9120DA998B0031FB7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6274CB9220DA998B0031FB7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		917B68981DD0F4FD00AE5629 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 910921721E79DE64008E5535 /* CommonCrypto.xcconfig */;
@@ -391,7 +455,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.onedegree.CertificateSigningRequestSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_INCLUDE_PATHS = "${inherited} \"${BUILT_PRODUCTS_DIR}/CommonCrypto\"";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -422,7 +486,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.onedegree.CertificateSigningRequestSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_INCLUDE_PATHS = "${inherited} \"${BUILT_PRODUCTS_DIR}/CommonCrypto\"";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 			};
@@ -466,6 +530,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6274CB9320DA998B0031FB7C /* Build configuration list for PBXAggregateTarget "CommonCryptoModuleMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6274CB9120DA998B0031FB7C /* Debug */,
+				6274CB9220DA998B0031FB7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		917B68801DD0F4FD00AE5629 /* Build configuration list for PBXProject "CertificateSigningRequestSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
